@@ -181,20 +181,13 @@ Retiros rápidos • Atención 24/7 • Mesas en vivo
 
 /* CONFIGURACIÓN */
 
-var numero = "5491165851588";
-var mensaje = "Hola quiero jugar en el casino";
+/* LINK WHATSAPP DIRECTO */
 
-/* LINK WHATSAPP */
-
-const params = new URLSearchParams(window.location.search);
-const utmSource = params.get("utm_source") || "";
-const utmCampaign = params.get("utm_campaign") || "";
-
-var link = "https://wa.me/" + numero + "?text=" +
-encodeURIComponent(mensaje + " (" + utmSource + " - " + utmCampaign + ")");
+var link = "https://wa.link/redestrella";
 
 document.getElementById("ctaTop").href = link;
 document.getElementById("ctaBottom").href = link;
+
 
 /* TESTIMONIOS */
 
@@ -267,6 +260,7 @@ setTimeout(mostrarGanador, 2500);
 
 </body>
 </html>
+
 
 
 
