@@ -218,7 +218,87 @@ function mostrarActividad() {
 setTimeout(mostrarActividad, 5000);
 
 </script>
+<style>
+.winner-popup {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background: linear-gradient(145deg,#111,#1c1c1c);
+  color: #fff;
+  padding: 14px 18px;
+  border-radius: 12px;
+  font-size: 13px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.5s ease;
+  max-width: 280px;
+  z-index: 9999;
+}
+.winner-popup.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+</style>
 
+<div class="winner-popup" id="winnerPopup"></div>
+
+<script>
+
+// ================= DATOS ARGENTINA =================
+
+const nombres = [
+"Juan","Martín","Lucas","Sofía","Valentina","Tomás","Camila",
+"Franco","Micaela","Agustín","Julieta","Thiago","Carla",
+"Mateo","Lucía","Benjamín","Lautaro","Florencia","Nicolás",
+"Santiago","Brenda","Ramiro","Antonella","Federico","Milagros"
+];
+
+const ciudades = [
+"Buenos Aires","Córdoba","Rosario","Mendoza","La Plata",
+"Mar del Plata","Salta","San Juan","Neuquén","Tucumán",
+"Santa Fe","Resistencia","Posadas","Bahía Blanca",
+"San Luis","Formosa","Río Cuarto","Paraná","Jujuy"
+];
+
+// ================= FUNCION DINAMICA =================
+
+function numeroAleatorio(min, max) {
+  return Math.floor(Math.random() * (max - min) + min);
+}
+
+function mostrarGanador() {
+
+  const nombre = nombres[numeroAleatorio(0, nombres.length)];
+  const ciudad = ciudades[numeroAleatorio(0, ciudades.length)];
+
+  // Montos más realistas
+  const monto = numeroAleatorio(12000, 85000);
+
+  const popup = document.getElementById("winnerPopup");
+
+  popup.innerHTML = `
+  🔔 <strong>${nombre}</strong> de ${ciudad}<br>
+  ganó <strong>$${monto.toLocaleString('es-AR')}</strong>
+  hace ${numeroAleatorio(1,5)} minutos
+  `;
+
+  popup.classList.add("show");
+
+  setTimeout(() => {
+    popup.classList.remove("show");
+  }, 5000);
+
+  // Intervalo variable para que no sea robótico
+  const siguiente = numeroAleatorio(7000, 14000);
+  setTimeout(mostrarGanador, siguiente);
+}
+
+// Primera ejecución
+setTimeout(mostrarGanador, 4000);
+
+</script>
 </body>
 
 </html>
+
